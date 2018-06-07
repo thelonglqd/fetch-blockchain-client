@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <span><b>Order dashboard</b></span>
+  <a style="margin-left: 20px" href="#">Logout</a>
+</nav>
+<div style="margin-top: 20px" class="col-md-6 offset-md-3">
+  <div class="input-group mb-3">
+    <label>
+      <b>Units</b>
+    </label>
+    <input style="margin-left: 25px" ng-model="size" type="text" class="form-control" placeholder="0.00000000">
+    <div class="input-group-append">
+      <span class="input-group-text">BTC</span>
+    </div>
+  </div>
+  <div class="input-group mb-3">
+    <label>
+      <b>Bid</b>
+    </label>
+    <input style="margin-left: 40px" ng-model="bid" type="text" class="form-control" placeholder="0.00000000">
+    <div class="input-group-append">
+      <span class="input-group-text">SGD</span>
+    </div>
+  </div>
+  <div>
+    <button style="margin-left: 64px" ng-disabled="!size || !bid" ng-click="buybit()" type="button" class="btn btn-danger">Buy Bitcoin</button>
+  </div>
+  <hr>
+  <h3>ORDER BOOK</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>TOTAL</th>
+        <th>SIZE</th>
+        <th>BID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="order in orders | orderBy: '-bid'">
+        <td>{{order.size * order.bid | number: 4 }}</td>
+        <td>{{order.size | number: 4 }}</td>
+        <td>{{order.bid | number: 4 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
